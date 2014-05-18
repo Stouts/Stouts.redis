@@ -1,0 +1,7 @@
+---
+
+- name: redis-install | Install Redis
+  apt: pkg={{item}}
+  with_items:
+    - python-selinux
+    - redis-server
