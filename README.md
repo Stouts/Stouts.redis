@@ -11,6 +11,7 @@ Ansible role which manage redis
 redis_enabled: yes                      # Enable the role
 redis_service: redis-server             # Name of the redis service
 redis_configuration: /etc/redis/redis.conf  # Path to redis configuration
+redis_update_kernel: yes                # Set the kernel parameter for vm overcommit 
 
 # Setup redis role
 redis_role: master

@@ -5,3 +5,5 @@
     - include: 'handlers/main.yml'
   vars_files:
     - 'defaults/main.yml'
+  vars:
+      redis_update_kernel: no

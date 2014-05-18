@@ -7,3 +7,4 @@
 
 - name: redis-configure | Set the kernel parameter for vm overcommit 
   sysctl: name=vm.overcommit_memory value=1 state=present
+  when: redis_update_kernel
