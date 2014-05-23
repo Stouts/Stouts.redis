@@ -1,9 +1,7 @@
 - hosts: all
   tasks:
-    - include: 'tasks/main.yml'
+    - include: 'tasks/main.yml' redis_update_kernel=no
   handlers:
     - include: 'handlers/main.yml'
   vars_files:
     - 'defaults/main.yml'
-  vars:
-    redis_update_kernel: no
