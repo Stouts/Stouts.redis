@@ -12,7 +12,6 @@
 REDIS="/usr/bin/redis-server"
 PROG=$(basename $REDIS)
 CONF_FILE="/etc/redis/redis.conf"
-LOCKFILE=/var/lock/redis
 PORT={{redis_port}}
 CLI=/usr/bin/redis-cli
  
@@ -21,19 +20,13 @@ start() {
     [ -f $CONF_FILE ] || exit 6
     echo -n $"Starting $PROG: "
     daemon $REDIS $CONF_FILE
-    RETVAL=$?
-    echo
-    [ $RETVAL -eq 0 ] && touch $LOCKFILE
-    return $RETVAL
+    return $?
 }
  
 stop() {
     echo -n $"Stopping $PROG: "
     $CLI -p $PORT shutdown
-    RETVAL=$?
-    echo
-    [ $RETVAL -eq 0 ] && rm -f $LOCKFILE
-    return $RETVAL
+    return $?
 }
  
 restart() {
@@ -44,8 +37,6 @@ restart() {
 reload() {
     echo -n $"Reloading $PROG: "
     killall $REDIS -HUP
-    RETVAL=$?
-    echo
 }
  
 force_reload() {
