@@ -10,6 +10,3 @@
     - python-selinux
     - daemon
     - redis-server
-
-- name: redis-install | Setup init script
-  template: src=redis-server.j2 dest=/etc/init.d/redis-server owner=root mode=744
