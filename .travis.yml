@@ -24,7 +24,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Check for redis is running and working
-  - ps -ef | grep redis-server || exit 1
+  - ps -ef | grep redis-server | grep -v grep || exit 1
 
 redis_update_kernel: no
 
