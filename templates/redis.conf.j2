@@ -421,7 +421,7 @@ maxmemory-policy {{ redis_maxmemory_policy }}
 #
 # Please check http://redis.io/topics/persistence for more information.
 
-appendonly {{ redis_appendonly }}
+appendonly {{ 'yes' if redis_appendonly else 'no' }}
 
 # The name of the append only file (default: "appendonly.aof")
 appendfilename {{ redis_appendfilename }}
