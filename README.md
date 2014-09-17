@@ -11,7 +11,7 @@ Ansible role which manage redis
 redis_enabled: yes                      # Enable the role
 redis_service: redis-server             # Name of the redis service
 redis_configuration: /etc/redis/redis.conf  # Path to redis configuration
-redis_update_kernel: yes                # Set the kernel parameter for vm overcommit 
+redis_update_kernel: yes                # Set the kernel parameter for vm overcommit
 
 # Setup redis role
 redis_role: master
@@ -36,6 +36,8 @@ redis_pass: None
 redis_max_clients: 128
 redis_max_memory: 512mb
 redis_maxmemory_policy: volatile-lru
+redis_appendonly: no
+redis_appendfilename: appendonly.aof
 redis_appendfsync: everysec
 ```
 
