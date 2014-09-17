@@ -29,4 +29,6 @@ redis_pass: None
 redis_max_clients: 128
 redis_max_memory: 512mb
 redis_maxmemory_policy: volatile-lru
+redis_appendonly: no
+redis_appendfilename: appendonly.aof
 redis_appendfsync: everysec
