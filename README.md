@@ -2,8 +2,7 @@ Stouts.redis
 ============
 
 [![Build Status](http://img.shields.io/travis/Stouts/Stouts.redis.svg?style=flat-square)](https://travis-ci.org/Stouts/Stouts.redis)
-[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.redis-blue.svg?style=flat-square)](https://galaxy.redis.com/list#/roles/888)
-[![Tag](http://img.shields.io/github/tag/Stouts/Stouts.redis.svg?style=flat-square)]()
+[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.redis-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/888)
 
 Ansible role which manage redis
 
