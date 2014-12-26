@@ -40,6 +40,9 @@ redis_maxmemory_policy: volatile-lru
 redis_appendonly: no
 redis_appendfilename: appendonly.aof
 redis_appendfsync: everysec
+
+# redis_unixsocket: /var/run/redis/redis.sock
+# redis_unixsocketperm: 755
 ```
 
 #### Usage
