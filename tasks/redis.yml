@@ -9,3 +9,4 @@
 
 - name: Ensure the redis started
   service: name={{redis_service}} state=started enabled=yes
+  when: redis_manage_service
