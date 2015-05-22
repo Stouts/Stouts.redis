@@ -1,5 +1,13 @@
 ---
 
+- name: set redis user uid
+  user: name=redis uid={{ redis_uid }} state=present
+  when: redis_uid
+
+- name: reset redis folder and subfolder to new uid
+  file: path={{ redis_db_dir }} owner=redis group=redis follow=yes recurse=yes state=directory
+  when: redis_uid
+
 - name: redis-configure | Configure redis
   template: src=redis.conf.j2 dest={{redis_configuration}}
   notify:
