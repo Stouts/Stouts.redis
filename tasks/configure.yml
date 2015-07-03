@@ -5,7 +5,10 @@
   when: redis_uid
 
 - name: reset redis folder and subfolder to new uid
-  file: path={{ redis_db_dir }} owner=redis group=redis follow=yes recurse=yes state=directory
+  file: path={{ item }} owner={{ redis_uid }} group=redis follow=yes recurse=yes state=directory
+  with_items:
+    - "{{ redis_db_dir }}"
+    - /var/log/redis
   when: redis_uid
 
 - name: redis-configure | Configure redis
