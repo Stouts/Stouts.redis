@@ -1,12 +1,24 @@
 ---
 
-- name: redis-install | Add repository
-  apt_repository: repo={{redis_ppa}} update_cache=yes
-  when: redis_ppa
+- name: redis-install | Install requirements
+  apt: name={{item}}
+  with_items: redis_requirements
+  when: redis_requirements
+
+- name: redis-install | Download Redis
+  get_url: url={{redis_url}} dest=/usr/local/src/redis-{{redis_version}}.tar.gz
+
+- name: redis-install | Unpack Redis
+  unarchive: src=/usr/local/src/redis-{{redis_version}}.tar.gz dest=/usr/local/src creates=/usr/local/src/redis-{{redis_version}}/Makefile copy=no
+
+- name: redis-install | Compile Redis
+  command: make -j{{ ansible_processor_cores + 1 }}
+  args:
+    chdir: /usr/local/src/redis-{{ redis_version }}
+    creates: /usr/local/src/redis-{{ redis_version }}/src/redis-server
 
 - name: redis-install | Install Redis
-  apt: pkg={{item}}
-  with_items:
-    - python-selinux
-    - daemon
-    - redis-server
+  command: make PREFIX={{redis_dir}} install
+  args:
+    chdir: /usr/local/src/redis-{{redis_version}}
+    creates: "{{redis_dir}}/bin/redis-server"
