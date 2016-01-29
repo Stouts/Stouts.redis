@@ -1,4 +1,4 @@
 ---
 
-redis_configuration: /etc/redis/redis.conf  # Path to redis configuration
-redis_service: redis-server
+redis_requirements: ['gcc', 'make', 'libc6-dev', 'tcl8.5']
+redis_env_path: /etc/default/redis

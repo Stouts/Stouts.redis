@@ -1,7 +1,0 @@
----
-
-- name: yum | Setup remi repo
-  copy: dest=/etc/yum.repos.d/remi.repo src=remi.repo
-
-- name: Install Redis
-  yum: name=redis enablerepo=remi
