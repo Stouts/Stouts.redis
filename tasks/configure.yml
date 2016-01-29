@@ -1,21 +1,26 @@
 ---
 
-- name: set redis user uid
-  user: name=redis uid={{ redis_uid }} state=present
-  when: redis_uid
-
 - name: reset redis folder and subfolder to new uid
-  file: path={{ item }} owner={{ redis_uid }} group=redis follow=yes recurse=yes state=directory
-  with_items:
-    - "{{ redis_db_dir }}"
-    - /var/log/redis
-  when: redis_uid
+  file: path={{ item }} owner={{ redis_user }} group=redis follow=yes recurse=yes state=directory
+  with_items: ["{{redis_db_dir}}", "{{redis_log_dir}}", "{{redis_run_dir}}", "{{redis_db_dir}}"]
+
+- name: redis-configure | Setup service
+  template: src=redis.init.debian.j2 dest=/etc/init.d/{{redis_service}} mode=0755
+  when: ansible_os_family == 'Debian'
+  notify: redis restart
+
+- name: redis-configure | Configure redis
+  template: src=redis.init.conf.j2 dest=/etc/default/redis mode=0600
+  when: ansible_os_family == 'Debian'
+  notify: redis restart
 
 - name: redis-configure | Configure redis
   template: src=redis.conf.j2 dest={{redis_configuration}}
-  notify:
-   - redis restart
+  notify: redis restart
 
 - name: redis-configure | Set the kernel parameter for vm overcommit
   sysctl: name=vm.overcommit_memory value=1 state=present
   when: redis_update_kernel
+
+- name: redis-configure | Enable the service
+  service: name={{redis_service}} state=started enabled=yes
