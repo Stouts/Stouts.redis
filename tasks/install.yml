@@ -3,7 +3,12 @@
 - name: redis-install | Install requirements
   apt: name={{item}}
   with_items: redis_requirements
-  when: redis_requirements
+  when: redis_requirements and ansible_os_family == "Debian"
+
+- name: redis-install | Install requirements
+  yum: name={{item}}
+  with_items: redis_requirements
+  when: redis_requirements and ansible_os_family == "RedHat"
 
 - name: redis-install | Download Redis
   get_url: url={{redis_url}} dest=/usr/local/src/redis-{{redis_version}}.tar.gz

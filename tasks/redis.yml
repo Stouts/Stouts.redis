@@ -10,12 +10,7 @@
   file: path={{item}} state=directory recurse=yes
   with_items: ["{{redis_dir}}", "{{redis_conf_dir}}", "{{redis_db_dir}}", "{{redis_run_dir}}", "{{redis_log_dir}}"]
 
-- include: install.deb.yml
-  when: ansible_os_family == 'Debian'
-  tags: [redis, redis-install]
-
-- include: install.yum.yml
-  when: ansible_os_family == 'RedHat'
+- include: install.yml
   tags: [redis, redis-install]
 
 - include: configure.yml

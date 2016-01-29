@@ -1,8 +1,9 @@
 #!/bin/bash
 
 IMAGES=(
+    "horneds/stouts-centos7"
     "horneds/stouts-ubuntu14.04"
-    # "horneds/stouts-debian8"
+    "horneds/stouts-debian8"
 )
 
 TESTS=(

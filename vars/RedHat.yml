@@ -1,5 +1,4 @@
 ---
 
-redis_configuration: /etc/redis.conf  # Path to redis configuration
-redis_update_kernel: false
-redis_service: redis
+redis_requirements: ['gcc', 'make', 'tcl']
+redis_env_path: /etc/sysconfig/redis
