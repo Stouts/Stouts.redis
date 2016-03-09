@@ -1,13 +1,13 @@
 ---
 
 - name: redis-install | Install requirements
-  apt: name={{item}}
-  with_items: redis_requirements
+  apt: name={{item}} force=yes
+  with_items: "{{redis_requirements}}"
   when: redis_requirements and ansible_os_family == "Debian"
 
 - name: redis-install | Install requirements
   yum: name={{item}}
-  with_items: redis_requirements
+  with_items: "{{redis_requirements}}"
   when: redis_requirements and ansible_os_family == "RedHat"
 
 - name: redis-install | Download Redis
