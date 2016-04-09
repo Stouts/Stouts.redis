@@ -14,6 +14,9 @@ redis_conf_dir: /etc/redis
 redis_configuration: "{{redis_conf_dir}}/redis.conf"  # Path to redis configuration
 redis_update_kernel: yes                # Set the kernel parameter for vm overcommit
 
+redis_docker: no
+redis_docker_image: mendsley/alpine-redis
+
 redis_ppa: ppa:chris-lea/redis-server   # Set blank fot skip adding ppa
 redis_nofile_limit: 16384
 
@@ -25,6 +28,7 @@ redis_master_port: 6379
 redis_master_auth: None
 
 # Setup redis options
+redis_daemonize: "yes"
 redis_bind: "127.0.0.1"
 redis_password: no
 redis_port: 6379

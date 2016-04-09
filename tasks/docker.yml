@@ -1,0 +1,24 @@
+---
+
+- name: redis-docker | Ensure that redis directories is exists
+  file: state=directory path={{item}} recurse=True
+  with_items:
+  - "{{redis_conf_dir}}"
+  - "{{redis_db_dir}}"
+
+- name: redis-docker | Configure redis
+  template: src=redis.conf.j2 dest={{redis_configuration}}
+
+- name: redis-docker | Start redis
+  docker:
+    command: redis-server /etc/redis.conf
+    hostname: "redis.{{inventory_hostname}}"
+    image: "{{redis_docker_image}}"
+    name: redis
+    ports: ["{{redis_port}}:6379"]
+    pull: always
+    restart_policy: always
+    state: reloaded
+    volumes: 
+    - "{{redis_configuration}}:/etc/redis.conf:ro"
+    - "{{redis_db_dir}}:{{redis_db_dir}}"

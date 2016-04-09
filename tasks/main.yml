@@ -1,5 +1,9 @@
 ---
 
 - include: redis.yml
-  when: redis_enabled
+  when: redis_enabled and not redis_docker
+  tags: [redis]
+
+- include: docker.yml
+  when: redis_enabled and redis_docker
   tags: [redis]
