@@ -15,6 +15,7 @@ redis_configuration: "{{redis_conf_dir}}/redis.conf"  # Path to redis configurat
 redis_update_kernel: yes                # Set the kernel parameter for vm overcommit
 
 redis_docker: no
+redis_docker_ports: ["127.0.0.1:{{redis_port}}:6379"] # Set empty to disable ports forwarding
 redis_docker_image: mendsley/alpine-redis
 
 redis_ppa: ppa:chris-lea/redis-server   # Set blank fot skip adding ppa

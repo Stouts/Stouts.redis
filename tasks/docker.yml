@@ -15,7 +15,7 @@
     hostname: "redis.{{inventory_hostname}}"
     image: "{{redis_docker_image}}"
     name: redis
-    ports: ["{{redis_port}}:6379"]
+    ports: "{{redis_docker_ports}}"
     pull: always
     restart_policy: always
     state: reloaded
