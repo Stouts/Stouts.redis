@@ -9,12 +9,18 @@
 - name: redis-docker | Configure redis
   template: src=redis.conf.j2 dest={{redis_configuration}}
 
+- set_fact:
+    redis_docker_hostname: ""
+    redis_docker_ports: []
+  when: redis_docker_net == 'host'
+
 - name: redis-docker | Start redis
   docker:
     command: redis-server /etc/redis.conf
-    hostname: "redis.{{inventory_hostname}}"
+    hostname: "{{redis_docker_hostname}}"
     image: "{{redis_docker_image}}"
     name: redis
+    net: "{{redis_docker_net}}"
     ports: "{{redis_docker_ports}}"
     pull: always
     restart_policy: always
