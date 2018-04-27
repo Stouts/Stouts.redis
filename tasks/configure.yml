@@ -2,7 +2,10 @@
 
 - name: reset redis folder and subfolder to new uid
   file: path={{ item }} owner={{ redis_user }} group=redis follow=yes recurse=yes state=directory
-  with_items: ["{{redis_db_dir}}", "{{redis_log_dir}}", "{{redis_run_dir}}", "{{redis_db_dir}}"]
+  with_items: ["{{redis_log_dir}}", "{{redis_run_dir}}", "{{redis_db_dir}}"]
+
+- name: reset redis folder and subfolder to new uid
+  file: path={{ redis_db_dir }} owner={{ redis_user }} group=redis follow=yes recurse=yes state=directory mode=0777
 
 - name: redis-configure | Setup service
   template: src=redis.init.{{ansible_os_family}}.j2 dest=/etc/init.d/{{redis_service}} mode=0755
