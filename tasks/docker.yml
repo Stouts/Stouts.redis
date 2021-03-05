@@ -15,7 +15,7 @@
   when: redis_docker_net == 'host'
 
 - name: redis-docker | Start redis
-  docker:
+  docker_container:
     command: redis-server /etc/redis.conf
     hostname: "{{redis_docker_hostname}}"
     image: "{{redis_docker_image}}"
