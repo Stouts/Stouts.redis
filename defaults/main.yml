@@ -54,3 +54,6 @@ redis_appendfsync: everysec
 
 # redis_unixsocket: /var/run/redis/redis.sock
 # redis_unixsocketperm: 755
+
+# Extra includes
+redis_includes: []
