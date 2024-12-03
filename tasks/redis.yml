@@ -10,10 +10,10 @@
   file: path={{item}} state=directory recurse=yes
   with_items: ["{{redis_dir}}", "{{redis_conf_dir}}", "{{redis_db_dir}}", "{{redis_run_dir}}", "{{redis_log_dir}}"]
 
-- include: install.yml
+- include_tasks: install.yml
   tags: [redis, redis-install]
 
-- include: configure.yml
+- include_tasks: configure.yml
   tags: [redis, redis-configure]
 
 - name: Ensure the redis started

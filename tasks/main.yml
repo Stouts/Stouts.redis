@@ -1,9 +1,9 @@
 ---
 
-- include: redis.yml
+- include_tasks: redis.yml
   when: redis_enabled and not redis_docker
   tags: [redis]
 
-- include: docker.yml
+- include_tasks: docker.yml
   when: redis_enabled and redis_docker
   tags: [redis]
