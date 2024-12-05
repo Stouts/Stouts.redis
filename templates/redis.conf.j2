@@ -712,3 +712,6 @@ aof-rewrite-incremental-fsync yes
 #
 # include /path/to/local.conf
 # include /path/to/other.conf
+{% for include in redis_includes %}
+include {{ include }}
+{% endfor %}
