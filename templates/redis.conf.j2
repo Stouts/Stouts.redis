@@ -213,7 +213,7 @@ slave-serve-stale-data yes
 # Note: read only slaves are not designed to be exposed to untrusted clients
 # on the internet. It's just a protection layer against misuse of the instance.
 # Still a read only slave exports by default all the administrative commands
-# such as CONFIG, DEBUG, and so forth. To a limited extend you can improve
+# such as CONFIG, DEBUG, and so forth. To a limited extent you can improve
 # security of read only slaves using 'rename-command' to shadow all the
 # administrative / dangerous commands.
 slave-read-only yes
@@ -257,7 +257,7 @@ repl-disable-tcp-nodelay no
 # resync is enough, just passing the portion of data the slave missed while
 # disconnected.
 #
-# The biggest the replication backlog, the longer the time the slave can be
+# The bigger the replication backlog, the longer the time the slave can be
 # disconnected and later be able to perform a partial resynchronization.
 #
 # The backlog is only allocated once there is at least a slave connected.
@@ -279,7 +279,7 @@ repl-disable-tcp-nodelay no
 #
 # A slave with a low priority number is considered better for promotion, so
 # for instance if there are three slaves with priority 10, 100, 25 Sentinel will
-# pick the one wtih priority 10, that is the lowest.
+# pick the one with priority 10, that is the lowest.
 #
 # However a special priority of 0 marks the slave as not able to perform the
 # role of master, so a slave with priority of 0 will never be selected by
@@ -296,7 +296,7 @@ slave-priority 100
 # The lag in seconds, that must be <= the specified value, is calculated from
 # the last ping received from the slave, that is usually sent every second.
 #
-# This option does not GUARANTEES that N replicas will accept the write, but
+# This option does not GUARANTEE that N replicas will accept the write, but
 # will limit the window of exposure for lost writes in case not enough slaves
 # are available, to the specified number of seconds.
 #
@@ -362,7 +362,7 @@ maxclients {{ redis_max_clients }}
 
 # Don't use more memory than the specified amount of bytes.
 # When the memory limit is reached Redis will try to remove keys
-# accordingly to the eviction policy selected (see maxmemmory-policy).
+# according to the eviction policy selected (see maxmemory-policy).
 #
 # If Redis can't remove keys according to the policy, or if the policy is
 # set to 'noeviction', Redis will start to reply with errors to commands
@@ -370,7 +370,7 @@ maxclients {{ redis_max_clients }}
 # to reply to read-only commands like GET.
 #
 # This option is usually useful when using Redis as an LRU cache, or to set
-# an hard memory limit for an instance (using the 'noeviction' policy).
+# a hard memory limit for an instance (using the 'noeviction' policy).
 #
 # WARNING: If you have slaves attached to an instance with maxmemory on,
 # the size of the output buffers needed to feed the slaves are subtracted
@@ -389,7 +389,7 @@ maxmemory {{ redis_max_memory }}
 # is reached. You can select among five behaviors:
 #
 # volatile-lru -> remove the key with an expire set using an LRU algorithm
-# allkeys-lru -> remove any key accordingly to the LRU algorithm
+# allkeys-lru -> remove any key according to the LRU algorithm
 # volatile-random -> remove a random key with an expire set
 # allkeys-random -> remove a random key, any key
 # volatile-ttl -> remove the key with the nearest expire time (minor TTL)
@@ -685,7 +685,7 @@ client-output-buffer-limit pubsub 32mb 8mb 60
 # never requested, and so forth.
 #
 # Not all tasks are performed with the same frequency, but Redis checks for
-# tasks to perform accordingly to the specified "hz" value.
+# tasks to perform according to the specified "hz" value.
 #
 # By default "hz" is set to 10. Raising the value will use more CPU when
 # Redis is idle, but at the same time will make Redis more responsive when
